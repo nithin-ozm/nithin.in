@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agantham Nithin — Premium Portfolio</title>
+  <meta name="description" content="Premium portfolio of Agantham Nithin — event planner, creator, video editor." />
+  <meta name="author" content="Agantham Nithin" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold: #FFD700;
+      --gold-gradient: linear-gradient(135deg, #FFD700, #FFC107, #FFB300);
+      --bg: #0b0a0f;
+      --card: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.75);
+      --radius: 18px;
+      --shadow: 0 10px 35px rgba(0,0,0,0.6);
+      --gap: 16px;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    }
+
+    *{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+    body{
+      font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(circle at top left, rgba(255,215,0,0.06), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255,193,7,0.04), transparent 35%),
+        linear-gradient(180deg,#0b0a0f,#121212);
+      color:#fff;
+      line-height:1.5;
+      overflow-x:hidden;
+      display:flex;
+      justify-content:center;
+      padding:20px;
+      font-size: clamp(15px, 2.2vw, 17px);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .skip-link{
+      position: absolute;
+      left: -999px;
+      top: -999px;
+    }
+    .skip-link:focus{
+      left: 12px;
+      top: 12px;
+      background:#000;
+      color:var(--gold);
+      padding:8px 12px;
+      border-radius:8px;
+      z-index:9999;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:980px;
+      background:rgba(255,255,255,0.02);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(8px) saturate(120%);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .decor{
+      position:absolute;border-radius:50%;filter:blur(110px);opacity:0.32;z-index:0;pointer-events:none;
+    }
+    .decor.gold1{top:-140px;left:-110px;width:340px;height:340px;background:var(--gold-gradient);}
+    .decor.gold2{bottom:-140px;right:-120px;width:420px;height:420px;background:var(--gold-gradient);}
+    @media (max-width:520px){ .decor{ display:none } }
+
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:18px;z-index:2;position:relative;
+      gap:var(--gap);
+    }
+
+    .brand h1{
+      font-family:'Playfair Display',serif;
+      font-size:28px;
+      line-height:1;
+      background:var(--gold-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .brand p{font-size:13px;color:var(--muted);margin-top:3px}
+
+    .profile-photo{
+      width:84px;height:84px;border-radius:50%;overflow:hidden;
+      border:3px solid #FFD700;box-shadow:0 0 14px rgba(255,215,0,0.45);
+      flex-shrink:0;transition:transform .4s ease;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .profile-photo:hover{ transform:scale(1.03) rotate(-2deg) }
+    .profile-photo img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    .btn{
+      padding:12px 18px;border-radius:999px;
+      border:1px solid #FFD700;background:transparent;
+      color:#FFD700;font-weight:700;cursor:pointer;
+      transition:all .22s ease;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      font-size:0.95rem;
+    }
+    .btn:hover{ background:var(--gold-gradient); color:#000; transform:translateY(-2px) }
+    .btn:active{ transform:translateY(0) }
+
+    main{
+      display:grid;
+      grid-template-columns:1fr 300px;
+      gap:18px;
+      z-index:2;position:relative;
+    }
+    @media(max-width:900px){
+      main{ grid-template-columns:1fr; }
+      header{ flex-direction:column; align-items:center; text-align:center }
+      .profile-photo{ margin-top:6px }
+    }
+
+    .hero{
+      background:var(--card);padding:18px;border-radius:var(--radius);
+      box-shadow:var(--shadow);margin-bottom:12px;
+    }
+    .hero h2{ font-size:20px; margin-bottom:8px; }
+    .hero .name{
+      font-family:'Playfair Display',serif;font-size:24px;
+      background:var(--gold-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .tagline{ color:var(--muted); margin-bottom:12px; font-size:0.95rem }
+
+    .stats{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px }
+    .stat{
+      flex:1; min-width:110px; padding:10px 12px; border-radius:12px;
+      background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.16);
+      text-align:center;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:6px;
+    }
+    .stat strong{ color:#FFD700; display:block; font-size:14px }
+    .stat small{ color:var(--muted); font-size:13px; }
+
+    .section{ background:var(--card); padding:16px; border-radius:var(--radius); margin-bottom:14px }
+    .section h3{ margin-bottom:12px; font-size:18px; color:#FFD700 }
+
+    .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px }
+    .skill{ background:rgba(255,215,0,0.06); padding:12px; border-radius:12px; font-size:0.95rem }
+    .progress{ height:8px; background:rgba(255,255,255,0.07); border-radius:999px; overflow:hidden; margin-top:8px }
+    .progress i{ display:block; height:100%; background:var(--gold-gradient) }
+
+    .projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px }
+    .project{ padding:12px; border-radius:12px; background:rgba(255,215,0,0.04); border:1px solid rgba(255,215,0,0.12) }
+    .project h4{ color:#FFD700; margin-bottom:6px; font-size:15px }
+
+    .timeline .t-item{ display:flex; gap:12px; padding:10px 0; border-bottom:1px dashed rgba(255,255,255,0.07) }
+    .t-item:last-child{ border-bottom:0 }
+    .dot{ width:10px; height:10px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; box-shadow:0 4px 8px rgba(0,0,0,0.4) }
+
+    .sidebar{ display:flex; flex-direction:column; gap:12px; min-width:220px }
+    .card{ padding:14px; border-radius:var(--radius); background:var(--card) }
+
+    footer{
+      text-align:center;
+      font-size:14px;
+      margin-top:12px;
+    }
+    footer span{
+      font-family:'Playfair Display', serif;
+      font-weight:800;
+      background:var(--gold-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    @media (max-width:520px) {
+      .wrap{ padding:16px; border-radius:14px; }
+      .brand h1{ font-size:22px }
+      .profile-photo{ width:88px; height:88px }
+      .hero .name{ font-size:22px }
+      .btn{ padding:12px 14px; font-size:0.98rem; }
+      .sidebar{ order:2 }
+      section{ order:1 }
+      .stat{ min-width:90px; padding:10px }
+      .projects{ grid-template-columns:1fr }
+      .skills-grid{ grid-template-columns:1fr 1fr }
+    }
+
+    :target { scroll-margin-top: 18px; }
+    a { color:inherit }
+    .muted { color:var(--muted); font-size:0.92rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#maincontent">Skip to content</a>
+
+  <div class="wrap" role="main" aria-labelledby="brand-heading">
+    <div class="decor gold1"></div>
+    <div class="decor gold2"></div>
+
+    <header>
+      <div class="brand" id="brand-heading">
+        <h1>Agantham Nithin</h1>
+        <p>Planner • Creator • Editor</p>
+      </div>
+
+      <div class="profile-photo" aria-hidden="false" title="Profile">
+        <img src="profile.png" alt="Agantham Nithin profile photo" loading="lazy">
+      </div>
+    </header>
+
+    <main id="maincontent">
+      <section>
+        <div class="hero" aria-labelledby="intro-heading">
+          <h2 id="intro-heading">Hello 👋 I’m <span class="name">Nithin</span></h2>
+          <p class="tagline">Event planner, decoration designer, sports enthusiast & video editor.</p>
+
+          <div class="stats" role="list" aria-label="key information">
+            <div class="stat" role="listitem"><strong>Age</strong><small>02/04/2004</small></div>
+            <div class="stat" role="listitem"><strong>Phone</strong><small><a href="tel:+916309553130" aria-label="Call Nithin">+91 63095 53130</a></small></div>
+            <div class="stat" role="listitem"><strong>Email</strong><small><a href="mailto:aganthamnithin@gmail.com" aria-label="Email Nithin">aganthamnithin@gmail.com</a></small></div>
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="resume.pdf" class="btn" aria-label="Download resume">Download Resume</a>
+            <a href="#contact" class="btn" aria-label="Contact section">Contact</a>
+          </div>
+        </div>
+
+        <div class="section" aria-labelledby="about-heading">
+          <h3 id="about-heading">About</h3>
+          <p>I’m passionate about Ganesh madapam decorations, creative event layouts, and editing engaging videos. I also play cricket & volleyball, and bring creativity to everything I do.</p>
+        </div>
+
+        <div class="section" aria-labelledby="skills-heading">
+          <h3 id="skills-heading">Skills</h3>
+          <div class="skills-grid">
+            <div class="skill">Event Planning
+              <div class="progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><i style="width:90%"></i></div>
+            </div>
+            <div class="skill">Decoration & Design
+              <div class="progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"><i style="width:92%"></i></div>
+            </div>
+            <div class="skill">Video Editing
+              <div class="progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><i style="width:80%"></i></div>
+            </div>
+            <div class="skill">Sports
+              <div class="progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><i style="width:85%"></i></div>
+            </div>
+            <div class="skill">Creative Direction
+              <div class="progress" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"><i style="width:82%"></i></div>
+            </div>
+            <div class="skill">Communication
+              <div class="progress" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><i style="width:88%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="projects" class="section" aria-labelledby="projects-heading">
+          <h3 id="projects-heading">Projects</h3>
+          <div class="projects">
+            <div class="project"><h4>Ganesh Madapam</h4><p>Decoration & event coordination for community celebrations.</p></div>
+            <div class="project"><h4>Short Film</h4><p>Editing, sound mixing & color grading for local production.</p></div>
+            <div class="project"><h4>Sports Tournament</h4><p>Organised cricket & volleyball events with full logistics.</p></div>
+            <div class="project"><h4>Social Media Clips</h4><p>Instagram reels with creative transitions & edits.</p></div>
+          </div>
+        </div>
+
+        <div class="section timeline" aria-labelledby="timeline-heading">
+          <h3 id="timeline-heading">Timeline</h3>
+          <div class="t-item"><div class="dot" aria-hidden="true"></div><div><strong>SRR Karimnagar</strong><div class="muted">Degree</div></div></div>
+          <div class="t-item"><div class="dot" aria-hidden="true"></div><div><strong>Kodimail Govt</strong><div class="muted">Intermediate</div></div></div>
+          <div class="t-item"><div class="dot" aria-hidden="true"></div><div><strong>SVD High School</strong><div class="muted">10th</div></div></div>
+        </div>
+
+        <div id="contact" class="section" aria-labelledby="contact-heading">
+          <h3 id="contact-heading">Contact</h3>
+          <p class="muted">Phone: <a href="tel:+916309553130">+91 63095 53130</a><br>
+             Email: <a href="mailto:aganthamnithin@gmail.com">aganthamnithin@gmail.com</a></p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://www.instagram.com/nithin__ozm/" target="_blank" rel="noopener" class="btn">Instagram</a>
+            <a href="https://wa.me/916309553130" target="_blank" rel="noopener" class="btn">WhatsApp</a>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="card">
+          <h3>Highlights</h3>
+          <ul style="margin-top:8px;list-style:none;line-height:1.6;padding-left:0">
+            <li>✨ Ganesh Decorations</li>
+            <li>🎬 Video Editing</li>
+            <li>🏏 Cricket & Volleyball</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Quick Links</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <a href="#projects" class="btn">Projects</a>
+            <a href="#contact" class="btn">Contact</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      ✨ <span>Last created by Nithin Agantham</span> ✨
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function() {
+      const internal = document.querySelectorAll('a[href^="#"]');
+      internal.forEach(a => {
+        a.addEventListener('click', function(e){
+          const targetId = this.getAttribute('href');
+          if(!targetId || targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if(target){
+            e.preventDefault();
+            const prevTab = target.getAttribute('tabindex');
+            if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.setTimeout(function(){
+              try { target.focus({ preventScroll: true }); } catch(e){}
+              if (prevTab === null) target.removeAttribute('tabindex');
+            }, 480);
+          }
+        }, { passive: true });
+      });
+    })();
+  </script>
+</body>
+</html>
